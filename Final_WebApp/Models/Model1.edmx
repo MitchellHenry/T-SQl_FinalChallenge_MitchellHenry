@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustNo" />
+          </Key>
+          <Property Name="CustNo" Type="int" Nullable="false" />
+          <Property Name="CustName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PostCode" Type="int" Nullable="false" />
+          <Property Name="InterestCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Performer" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleDate" />
+            <PropertyRef Name="RecordID" />
+            <PropertyRef Name="CustNo" />
+          </Key>
+          <Property Name="SaleDate" Type="date" Nullable="false" />
+          <Property Name="PricePaid" Type="money" Nullable="false" />
+          <Property Name="RecordID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Special_Interests">
+          <Key>
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="InterestCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InterestDesc" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__Customer__Intere__4F7CD00D">
+          <End Role="Special_Interests" Type="Self.Special_Interests" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Special_Interests">
+              <PropertyRef Name="InterestCode" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="InterestCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sale__CustNo__571DF1D5">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustNo" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="CustNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sale__RecordID__5629CD9C">
+          <End Role="Record" Type="Self.Record" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Record">
+              <PropertyRef Name="RecordID" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="RecordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Special_Interests" EntityType="Self.Special_Interests" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Customer__Intere__4F7CD00D" Association="Self.FK__Customer__Intere__4F7CD00D">
+            <End Role="Special_Interests" EntitySet="Special_Interests" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sale__CustNo__571DF1D5" Association="Self.FK__Sale__CustNo__571DF1D5">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sale__RecordID__5629CD9C" Association="Self.FK__Sale__RecordID__5629CD9C">
+            <End Role="Record" EntitySet="Record" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustNo" />
+          </Key>
+          <Property Name="CustNo" Type="Int32" Nullable="false" />
+          <Property Name="CustName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostCode" Type="Int32" Nullable="false" />
+          <Property Name="InterestCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Special_Interests" Relationship="Self.FK__Customer__Intere__4F7CD00D" FromRole="Customer" ToRole="Special_Interests" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__CustNo__571DF1D5" FromRole="Customer" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Performer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sale__RecordID__5629CD9C" FromRole="Record" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleDate" />
+            <PropertyRef Name="RecordID" />
+            <PropertyRef Name="CustNo" />
+          </Key>
+          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PricePaid" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="RecordID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Sale__CustNo__571DF1D5" FromRole="Sale" ToRole="Customer" />
+          <NavigationProperty Name="Record" Relationship="Self.FK__Sale__RecordID__5629CD9C" FromRole="Sale" ToRole="Record" />
+        </EntityType>
+        <EntityType Name="Special_Interests">
+          <Key>
+            <PropertyRef Name="InterestCode" />
+          </Key>
+          <Property Name="InterestCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InterestDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customer__Intere__4F7CD00D" FromRole="Special_Interests" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK__Customer__Intere__4F7CD00D">
+          <End Role="Special_Interests" Type="Self.Special_Interests" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Special_Interests">
+              <PropertyRef Name="InterestCode" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="InterestCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sale__CustNo__571DF1D5">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustNo" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="CustNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sale__RecordID__5629CD9C">
+          <End Role="Record" Type="Self.Record" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Record">
+              <PropertyRef Name="RecordID" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="RecordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Records" EntityType="Self.Record" />
+          <EntitySet Name="Sales" EntityType="Self.Sale" />
+          <EntitySet Name="Special_Interests" EntityType="Self.Special_Interests" />
+          <AssociationSet Name="FK__Customer__Intere__4F7CD00D" Association="Self.FK__Customer__Intere__4F7CD00D">
+            <End Role="Special_Interests" EntitySet="Special_Interests" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sale__CustNo__571DF1D5" Association="Self.FK__Sale__CustNo__571DF1D5">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sale__RecordID__5629CD9C" Association="Self.FK__Sale__RecordID__5629CD9C">
+            <End Role="Record" EntitySet="Records" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="Model.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustNo" ColumnName="CustNo" />
+                <ScalarProperty Name="CustName" ColumnName="CustName" />
+                <ScalarProperty Name="CustAddress" ColumnName="CustAddress" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="InterestCode" ColumnName="InterestCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Records">
+            <EntityTypeMapping TypeName="Model.Record">
+              <MappingFragment StoreEntitySet="Record">
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Performer" ColumnName="Performer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="Model.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="PricePaid" ColumnName="PricePaid" />
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="CustNo" ColumnName="CustNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Special_Interests">
+            <EntityTypeMapping TypeName="Model.Special_Interests">
+              <MappingFragment StoreEntitySet="Special_Interests">
+                <ScalarProperty Name="InterestCode" ColumnName="InterestCode" />
+                <ScalarProperty Name="InterestDesc" ColumnName="InterestDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

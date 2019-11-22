@@ -1,0 +1,6 @@
+C:\Users\Mitchell\Documents\GitHub\T-SQl_FinalChallenge_MitchellHenry\Final_T-SQL_DB\bin\Debug\Final_T-SQL_DB.dacpac
+C:\Users\Mitchell\Documents\GitHub\T-SQl_FinalChallenge_MitchellHenry\Final_T-SQL_DB\bin\Debug\Final_T_SQL_DB.dll
+C:\Users\Mitchell\Documents\GitHub\T-SQl_FinalChallenge_MitchellHenry\Final_T-SQL_DB\bin\Debug\Final_T_SQL_DB.pdb
+C:\Users\Mitchell\Documents\GitHub\T-SQl_FinalChallenge_MitchellHenry\Final_T-SQL_DB\obj\Debug\Final_T-SQL_DB.sqlprojAssemblyReference.cache
+C:\Users\Mitchell\Documents\GitHub\T-SQl_FinalChallenge_MitchellHenry\Final_T-SQL_DB\obj\Debug\Final_T_SQL_DB.dll
+C:\Users\Mitchell\Documents\GitHub\T-SQl_FinalChallenge_MitchellHenry\Final_T-SQL_DB\obj\Debug\Final_T_SQL_DB.pdb

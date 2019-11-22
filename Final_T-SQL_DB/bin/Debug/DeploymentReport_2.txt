@@ -1,0 +1,25 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Sale]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column SaleDate in table [dbo].[Sale] is currently  INT NOT NULL but is being changed to  DATE NOT NULL.
+         There is no implicit or explicit conversion.
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[Sale] (Foreign Key)
+       unnamed constraint on [dbo].[Sale] (Foreign Key)
+     Table rebuild
+       [dbo].[Sale] (Table)
+
+** Supporting actions
+     Create
+       Foreign Key: unnamed constraint on [dbo].[Sale] (Foreign Key)
+       Foreign Key: unnamed constraint on [dbo].[Sale] (Foreign Key)
+
+The type for column SaleDate in table [dbo].[Sale] is currently  INT NOT NULL but is being changed to  DATE NOT NULL. There is no implicit or explicit conversion.
+
